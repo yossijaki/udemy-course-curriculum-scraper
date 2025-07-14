@@ -8,7 +8,7 @@ curso_url = input("🔗 Ingresa el enlace del curso de Udemy: ").strip()
 match = re.search(r"udemy\.com/course/([^/]+)/?", curso_url)
 if not match:
     print("❌ Enlace inválido. Asegúrate de que tenga el formato correcto, por ejemplo:")
-    print("   https://www.udemy.com/course/curso-de-guitarra-desde-cero/")
+    print("   https://www.udemy.com/course/curso-de-scraping/")
     exit()
 
 COURSE_SLUG = match.group(1)
@@ -57,4 +57,4 @@ with open("curriculum.txt", "w", encoding="utf-8") as f_txt, open("curriculum.md
     for linea in contenido_md:
         f_md.write(linea + "\n")
 
-print("✅ Curriculum guardado en curriculum.txt y curriculum.md")
+print("✅ Temario del curso guardado en curriculum.txt y curriculum.md")
