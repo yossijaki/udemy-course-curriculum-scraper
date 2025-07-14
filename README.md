@@ -22,7 +22,7 @@ El resultado se guarda en dos archivos:
 ### 1. Clona o descarga este repositorio
 
 ```bash
-git clone https://github.com/tuusuario/udemy-scraper.git
+git clone https://github.com/yossijaki/udemy-course-curriculum-scraper.git
 cd udemy-scraper
 ```
 
