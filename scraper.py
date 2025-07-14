@@ -1,6 +1,17 @@
 import requests
+import re
 
-COURSE_SLUG = "curso-de-guitarra-desde-cero"
+# Solicitar el enlace del curso
+curso_url = input("🔗 Ingresa el enlace del curso de Udemy: ").strip()
+
+# Extraer el slug del enlace
+match = re.search(r"udemy\.com/course/([^/]+)/?", curso_url)
+if not match:
+    print("❌ Enlace inválido. Asegúrate de que tenga el formato correcto, por ejemplo:")
+    print("   https://www.udemy.com/course/curso-de-guitarra-desde-cero/")
+    exit()
+
+COURSE_SLUG = match.group(1)
 
 # Paso 1: obtener ID del curso
 info = requests.get(f"https://www.udemy.com/api-2.0/courses/{COURSE_SLUG}/")
