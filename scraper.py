@@ -20,23 +20,30 @@ if curriculum.status_code != 200:
 items = curriculum.json()["results"]
 
 # Paso 3: procesar contenido
-contenido = []
+contenido_txt = []
+contenido_md = []
+
 unidad_num = 1
 video_num = 1
 
 for item in items:
     if item["_class"] == "chapter":
-        contenido.append(f"Unidad {unidad_num}: {item['title']}")
+        unidad_titulo = f"Unidad {unidad_num}: {item['title']}"
+        contenido_txt.append(unidad_titulo)
+        contenido_md.append(f"## {unidad_titulo}")
         video_num = 1
         unidad_num += 1
     elif item["_class"] == "lecture":
-        contenido.append(f"  {video_num:02d} - {item['title']}")
+        titulo = item['title']
+        contenido_txt.append(f"  {video_num:02d} - {titulo}")
+        contenido_md.append(f"{video_num}. {titulo}")
         video_num += 1
 
 # Paso 4: guardar archivos
 with open("curriculum.txt", "w", encoding="utf-8") as f_txt, open("curriculum.md", "w", encoding="utf-8") as f_md:
-    for linea in contenido:
+    for linea in contenido_txt:
         f_txt.write(linea + "\n")
+    for linea in contenido_md:
         f_md.write(linea + "\n")
 
 print("✅ Curriculum guardado en curriculum.txt y curriculum.md")
